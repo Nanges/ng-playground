@@ -10,6 +10,18 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale":{
+          "code": "en-US",
+          "subPath": "en-us"
+        },
+        "locales": {
+          "fr-BE":{
+            "subPath": "fr-be",
+            "translation": "./src/locales/messages.fr-be.json"
+          }
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -21,7 +33,8 @@
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -34,7 +47,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "localize":true,
+            "i18nDuplicateTranslation": "warning",
+            "i18nMissingTranslation": "error"
           },
           "configurations": {
             "production": {
@@ -56,6 +72,9 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "fr-BE":{
+              "localize":["fr-BE"]
             }
           },
           "defaultConfiguration": "production"
@@ -68,6 +87,9 @@
             },
             "development": {
               "buildTarget": "ng-playground:build:development"
+            },
+            "fr-BE": {
+              "buildTarget": "ng-playground:build:development,fr-BE"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +102,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",

@@ -14,6 +14,6 @@ export function navigationErrorHandler(navigationError: NavigationError): Redire
     
     const redirectPath = inject(Router).parseUrl(`/${ERROR_PATH[errorType]}`);
 
-    // By skipping location change, we preserve url
+    // Preserve url by skipping location change
     return new RedirectCommand(redirectPath, {skipLocationChange:true});
 }

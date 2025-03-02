@@ -11,4 +11,4 @@ export enum LogLevel {
 export const LOG_LEVEL = new InjectionToken<LogLevel>("Log level", {
     providedIn:'root',
     factory:() => LogLevel.Debug
-})
+});

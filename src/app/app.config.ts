@@ -3,9 +3,11 @@ import { provideRouter, withNavigationErrorHandler, withRouterConfig } from '@an
 
 import { routes } from './app.routes';
 import { navigationErrorHandler } from '@core/error';
+import { LogLevel, provideLogLevel } from '@core/logging';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideLogLevel(LogLevel.Log),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes,
       withRouterConfig({

@@ -1,7 +1,8 @@
-import { ApplicationConfig, inject, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, RedirectCommand, Router, withNavigationErrorHandler, withRouterConfig } from '@angular/router';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter, withNavigationErrorHandler, withRouterConfig } from '@angular/router';
 
 import { routes } from './app.routes';
+import { navigationErrorHandler } from '@core/error';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,11 +12,7 @@ export const appConfig: ApplicationConfig = {
         // Allow to keep full url on error
         urlUpdateStrategy:'eager'
       }),
-      withNavigationErrorHandler(error => {
-        const errorPath = inject(Router).parseUrl('/not-found');
-        console.error(error);
-        return new RedirectCommand(errorPath,{skipLocationChange:true});
-      })
+      withNavigationErrorHandler(navigationErrorHandler),
     )
   ]
 };

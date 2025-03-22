@@ -14,7 +14,7 @@ flowchart BT
     feature@{ shape: procs, label: "features"}
     core --> lib
     shared --> lib
-    shared -- Model only --> core
+    shared -- Models only --> core
     feature --> lib
     feature --> core
     feature --> shared

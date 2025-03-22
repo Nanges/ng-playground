@@ -4,8 +4,6 @@ This project is a template for futur developments.
 
 ## Solution structure
 
-### Dependencies graph
-
 ```mermaid
 flowchart BT
     ui["@ui"]

@@ -10,12 +10,16 @@ flowchart BT
     core["@core"]
     shared["@shared"]
     feature@{ shape: procs, label: "features"}
+    app
+    app --> core
+    app --> lib
+    app -.Lazy.->
     feature --> lib
     feature --> core
     feature --> shared
     core --> lib
     shared --> lib
-    shared -- Models only --> core
+    shared -.Models maybe?.-> core
 ```
 
 ### @lib

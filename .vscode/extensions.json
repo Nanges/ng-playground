@@ -2,6 +2,8 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
   "recommendations": [
     "angular.ng-template",
-    "bierner.markdown-mermaid"
+    "bierner.markdown-mermaid",
+    "PKief.material-icon-theme",
+    "esbenp.prettier-vscode"
   ]
 }

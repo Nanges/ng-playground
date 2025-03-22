@@ -8,14 +8,14 @@ This project is a template for futur developments.
 
 ```mermaid
 flowchart BT
-    lib["@lib"]
+    ui["@ui"]
     core["@core"]
     shared["@shared"]
     feature@{ shape: procs, label: "features"}
-    core --> lib
-    shared --> lib
-    shared -- Models only --> core
-    feature --> lib
+    feature --> ui
     feature --> core
     feature --> shared
+    core --> ui
+    shared --> ui
+    shared -- Models only --> core
 ```

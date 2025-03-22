@@ -6,19 +6,19 @@ This project is a template for futur developments.
 
 ```mermaid
 flowchart BT
-    ui["@ui"]
+    lib["@lib"]
     core["@core"]
     shared["@shared"]
     feature@{ shape: procs, label: "features"}
-    feature --> ui
+    feature --> lib
     feature --> core
     feature --> shared
-    core --> ui
-    shared --> ui
+    core --> lib
+    shared --> lib
     shared -- Models only --> core
 ```
 
-### @ui
+### @lib
 Reusable components, pipes, directives, services, classes or functions that are business agnostic. Basically those entities can be used in other projects.
 
 ### @core

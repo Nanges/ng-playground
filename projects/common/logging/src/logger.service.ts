@@ -1,6 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Logger } from './logger';
 import { LOG_LEVEL, LogLevel } from './LogLevel';
+import { ui } from '@common/ui';
+
+ui();
 
 @Injectable({
   providedIn: 'root'

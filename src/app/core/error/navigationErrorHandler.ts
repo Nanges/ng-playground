@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { NavigationError, RedirectCommand, Router } from "@angular/router";
 import { ErrorType, isBaseError } from "./models";
 import { ERROR_PATH } from "./constants";
-import { LoggerService } from "@core/logging";
+import { LoggerService } from "@common/logging";
 
 export function navigationErrorHandler(navigationError: NavigationError): RedirectCommand {
     inject(LoggerService).error(navigationError);

@@ -6,23 +6,23 @@ This project is a template for futur developments.
 
 ```mermaid
 flowchart BT
-    lib["@lib"]
+    common["@common"]
     core["@core"]
     shared["@shared"]
     feature@{ shape: procs, label: "features"}
     app
     app --> core
-    app --> lib
+    app --> common
     app -.Lazy.->
-    feature --> lib
+    feature --> common
     feature --> core
     feature --> shared
-    core --> lib
-    shared --> lib
+    core --> common
+    shared --> common
     shared -.Models maybe?.-> core
 ```
 
-### @lib
+### @common
 Reusable components, pipes, directives, services, classes or functions that are business agnostic. Basically those entities can be used in other projects.
 
 ### @core
@@ -36,3 +36,14 @@ Reusable components, pipes, directives, services, classes or functions that are 
 
 ### @shared
 Reusable components, pipes, directives,... that are shared between **features**. Then reusable components with business value.
+
+## Create a sub package in @common ore @core
+
+```bash
+mkdir projects/{}/{sub_package}
+mkdir projects/{package_name}/{sub_package}/src
+echo "export * from \"./public_api.ts\"" > projects/{package_name}/{sub_package}/src/index.ts
+echo {} > project/{package_name}/{sub_package}/ng-package.json
+```
+
+The file `public_api.ts` contains all exports that are exposed by the sub-package

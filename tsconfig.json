@@ -21,7 +21,16 @@
       "@core/*":["./src/app/core/*"],
       "@features/*":["./src/app/features/*"],
       "@shared/*":["./src/app/shared/*"],
-      "@utils/*":["./src/app/utils/*"]
+      "@utils/*": [
+        "./src/app/utils/*"
+      ],
+      "@common": ["./dist/common"],
+      "@common/*": [
+        "./dist/common/*"
+      ],
+      "core": [
+        "./dist/core"
+      ]
     }
   },
   "angularCompilerOptions": {

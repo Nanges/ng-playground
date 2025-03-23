@@ -6,9 +6,9 @@ This project is a template for futur developments.
 
 ```mermaid
 flowchart BT
-    common["@common"]
-    core["@core"]
-    shared["@shared"]
+    common["@common/*"]
+    core["@core/*"]
+    shared["@shared/*"]
     feature@{ shape: procs, label: "features"}
     app
     app --> core
@@ -40,10 +40,13 @@ Reusable components, pipes, directives,... that are shared between **features**.
 ## Create a sub package in @common ore @core
 
 ```bash
-mkdir projects/{}/{sub_package}
-mkdir projects/{package_name}/{sub_package}/src
-echo "export * from \"./public_api.ts\"" > projects/{package_name}/{sub_package}/src/index.ts
-echo {} > project/{package_name}/{sub_package}/ng-package.json
+./scripts/subpackage.sh PACKAGE_NAME SUB_PACKAGE_NAME
+```
+
+concrete example:
+
+```bash
+./scripts/subpackage.sh common ui
 ```
 
 The file `public_api.ts` contains all exports that are exposed by the sub-package

@@ -13,4 +13,17 @@
         </li>
     </ul>
 </nav>
+<app-field>
+    <button type="button" (click)="toggle = !toggle">Toggle</button>
+    <button type="button" (click)="reset()">Reset</button>
+    <button type="button" (click)="clearValidator()">Clear validators</button>
+    <button type="button" (click)="addValidator()">Add validators</button>
+    @if(toggle){
+        <div>
+            <label for="field" appLabel>Field</label>
+            <input id="field" type="text" [formControl]="control" />
+        </div>
+    }
+    <pre *appError="'required'; let bar">{{bar|json}}</pre>
+</app-field>
 <router-outlet></router-outlet>

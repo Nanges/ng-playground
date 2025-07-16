@@ -17,20 +17,12 @@ export class ErrorDirective implements OnInit {
   ngOnInit(): void {
     const key = this.appError();
 
-    merge(
-      this.#field.statusChange,
-      this.#field.focusChange.pipe(
-        switchMap(() => this.#field.statusChange),
-        takeUntilDestroyed(this.#destroyRef)
-      )).subscribe(() => {
+    this.#field.statusChange.pipe(takeUntilDestroyed(this.#destroyRef)).subscribe(() => {
         const control = this.#field.control;
         this.#viewContainerRef.clear();
 
-        if(!control) return;
-        if(!control.touched) return;
-        if(!control.hasError(key)) return;
-
-        this.#viewContainerRef.createEmbeddedView(this.#templateRef, {$implicit: control.errors});
+        if(control?.hasError(key))
+          this.#viewContainerRef.createEmbeddedView(this.#templateRef, {$implicit: control.errors});
     });
   }
 }

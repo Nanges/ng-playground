@@ -3,3 +3,11 @@
     margin-left: .25rem;
     color: red;
 }
+
+.field-error{
+    color:red;
+}
+
+:not(.ng-touched) .field-error{
+    display: none;
+}

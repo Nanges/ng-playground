@@ -15,7 +15,6 @@ export class FieldComponent {
   }
 
   readonly #control = new BehaviorSubject<AbstractControl|null>(null);
-  readonly #focusChange = new Subject<void>();
   
   readonly statusChange = this.#control.asObservable().pipe(
     switchMap(() => this.control 
@@ -26,16 +25,9 @@ export class FieldComponent {
       : of(null)
     )
   );
-
-  readonly focusChange = this.#focusChange.asObservable();
-
+  
   get control(){
     return this.#control.value;
-  }
-
-  @HostListener("focusout")
-  focusoutHandler(){
-    this.#focusChange.next();
   }
 
   @HostBinding("class.ng-touched")

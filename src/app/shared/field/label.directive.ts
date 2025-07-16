@@ -18,7 +18,7 @@ export class LabelDirective implements OnInit{
 
   ngOnInit(): void {
     this.#field.statusChange.pipe(
-      map(ctrl => ctrl?.hasValidator(Validators.required) ?? false),
+      map(() => this.#field.control?.hasValidator(Validators.required) ?? false),
       distinctUntilChanged(),
       takeUntilDestroyed(this.#destroyRef)
     ).subscribe(isRequired => {

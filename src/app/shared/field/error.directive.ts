@@ -22,15 +22,15 @@ export class ErrorDirective implements OnInit {
       this.#field.focusChange.pipe(
         switchMap(() => this.#field.statusChange),
         takeUntilDestroyed(this.#destroyRef)
-      )).subscribe((ctrl) => {
-
+      )).subscribe(() => {
+        const control = this.#field.control;
         this.#viewContainerRef.clear();
 
-        if(!ctrl) return;
-        if(!ctrl.touched) return;
-        if(!ctrl.hasError(key)) return;
+        if(!control) return;
+        if(!control.touched) return;
+        if(!control.hasError(key)) return;
 
-        this.#viewContainerRef.createEmbeddedView(this.#templateRef, {$implicit: ctrl.errors});
+        this.#viewContainerRef.createEmbeddedView(this.#templateRef, {$implicit: control.errors});
     });
   }
 }

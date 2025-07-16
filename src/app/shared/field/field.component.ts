@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChild, HostBinding, HostListener } from '@angular/core';
 import { AbstractControl, NgControl } from '@angular/forms';
-import { BehaviorSubject, map, of, startWith, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, map, of, startWith, Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-field',
@@ -18,13 +18,20 @@ export class FieldComponent {
   readonly #focusChange = new Subject<void>();
   
   readonly statusChange = this.#control.asObservable().pipe(
-    switchMap(ctrl => ctrl 
-      ? ctrl.statusChanges.pipe(startWith(ctrl), map(() => ctrl))
+    switchMap(() => this.control 
+      ? this.control.statusChanges.pipe(
+          startWith(this.control?.status ?? null),
+          distinctUntilChanged()
+        )
       : of(null)
     )
   );
 
   readonly focusChange = this.#focusChange.asObservable();
+
+  get control(){
+    return this.#control.value;
+  }
 
   @HostListener("focusout")
   focusoutHandler(){
@@ -33,11 +40,11 @@ export class FieldComponent {
 
   @HostBinding("class.ng-touched")
   get isTouched(){
-    return this.#control.value?.touched ?? false;
+    return this.control?.touched ?? false;
   }
 
   @HostBinding("class.ng-untouched")
   get isUntouched(){
-    return this.#control.value?.untouched ?? false;
+    return this.control?.untouched ?? false;
   }
 }
